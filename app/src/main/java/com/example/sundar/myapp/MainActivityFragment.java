@@ -1,9 +1,11 @@
 package com.example.sundar.myapp;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.text.format.Time;
 import android.util.Log;
@@ -61,10 +63,13 @@ public class MainActivityFragment extends Fragment {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+
+        String pin = (prefs.getString("location", "641001"));
         int id = item.getItemId();
         if (id == R.id.action_refresh) {
             FetchWeatherTask weatherTask = new FetchWeatherTask();
-            weatherTask.execute("641001");
+            weatherTask.execute(pin);
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -213,6 +218,8 @@ public class MainActivityFragment extends Fragment {
             String format = "json";
             String units = "metric";
             int numDays = 7;
+
+
 
             try {
                 // Construct the URL for the OpenWeatherMap query
