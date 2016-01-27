@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d("Hi", "OnCreate");
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -87,4 +88,31 @@ public class MainActivity extends AppCompatActivity {
             Log.d("Hi", "Couldn't call " + location + ", no receiving apps installed!");
         }
     }
-}
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d("Hi", "OnStart");
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d("Hi", "OnResume");
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d("Hi", "OnPause");
+    }
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d("Hi", "OnStop");
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d("Hi", "OnDestroy");
+    }
+
+    }
